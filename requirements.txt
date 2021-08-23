@@ -14,7 +14,6 @@ httplib2==0.14.0
 idna==2.8
 SQLAlchemy==1.4.22
 urllib3==1.25.8
-usb-creator==0.3.7
 virtualenv==20.7.0
 Werkzeug==2.0.1
 WTForms==2.3.3
