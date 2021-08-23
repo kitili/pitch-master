@@ -12,7 +12,7 @@
               aria-haspopup="true" aria-expanded="false">
               <strong>{{current_user.username}}</strong> </a>
             <div style="color:white;">
-              <a class="dropdown-item"style="color:white;" href="{{url_for('main.profile',name=current_user.username)}}"> My account</a>
+              <a class="dropdown-item"style="color:white;" href="{{url_for('main.profile',name=current_user.username)}}"> My Account</a>
               <a class="dropdown-item" style="color:white;"href="{{url_for('auth.logout')}}">Log out</a>
             </div>
             </li>
