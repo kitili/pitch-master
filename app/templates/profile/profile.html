@@ -1,0 +1,66 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<div class="container-fluid" style="background-color: black; color:white;" >
+<div class="row">
+  <div class="col-md-8 pict"style = "color:white;" >
+      
+
+    <div class="profile">
+        <div class="card-img"  >
+                {% if user.profile_pic_path %}
+                <img src="{{url_for('static',filename=user.profile_pic_path)}}" style="height:300px;"   alt="woman avatar">            
+                {%else%}
+                
+            
+                {% endif %}  
+        </div>
+
+        <div class="bio" style ="background-color: black; color: white;">
+            <h5 class="text-center"> {{user.username| capitalize}}</h5>
+            <hr>
+            {% if user.bio %}
+                <p><i class="fas fa-quote-left"></i> {{user.bio}}</p>
+            {%else%}
+            {% endif %}
+            {% if user == current_user %}
+            <div class="profpic">
+                <div id="updates">
+                  <button><a href="{{url_for('main.updateprofile',name=user.username)}}" style="color: white; background-color:black">Edit Bio</a></button><br><br>
+                  
+                 <p style="color: white; background-color:black" >SELECT FILE TO UPDATE  PICTURE:</p><BR>
+                  
+                </div>
+                
+                <div id="imgform">
+                    <form  action="{{url_for('main.update_pic',name=user.username)}}" method="post" enctype = "multipart/form-data">
+                      <input type="file"  name="photo" class="form-control" required>
+                      <input type="submit" class="btn btn-sm btn-success" id="submit">
+
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+    <div class="col-md-6" id="user"><br>
+        {% if current_user %}
+        <h3 class="text-center">You have Posted {{user.pitches.count()}} Pitches</h3>
+        {% for i in posts%}
+        <div class="pitches">
+            <h5>Title: {{i.title}}</h5>
+            <h6>{{i.post}}</h6>
+            <p>{{i.comment.count()}} Comments</p>
+        </div>
+         
+        {%endfor%}
+        {%else%}
+        <h3>You have ) posts</h3>
+        {%endif%}
+
+  </div>
+</div>
+</div>
+{% endblock %}
